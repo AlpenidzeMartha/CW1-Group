@@ -29,10 +29,10 @@
         <!-- <button v-on:click="addToCart"
                 v-show='canAddToCart'>
                 </button> -->
-        <button v-on:click="addToCart" v-if="canAddToCart">
+        <button style="background:green;cursor:pointer; font-family:'Courier New', Courier, monospace; font-size: 20px; font-weight: 700" v-on:click="addToCart" v-if="canAddToCart">
           Add to Cart
         </button>
-        <button disabled='disabled' v-else>
+        <button style="background:green;cursor:pointer; font-family:'Courier New', Courier, monospace; font-size: 20px; font-weight: 700" disabled='disabled' v-else>
           Add to Cart
         </button>
       </div>
