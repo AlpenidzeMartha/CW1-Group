@@ -1,0 +1,81 @@
+<html>
+
+<head>
+  <title>After School Club</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <h1 v-text="sitename"></h1>
+      <button v-on:click='showCheckout'>
+        {{cartItemCount}}
+        <span class="fas fa-cart-plus"></span>
+        Checkout
+      </button>
+    </header>
+
+    <main>
+      <div v-if='showLesson'>
+        <h2 v-text="lesson.subject"></h2>
+        <figure>
+          <img v-bind:src="lesson.image">
+        </figure>
+        <p v-html="lesson.location"></p>
+        <p>Price: {{lesson.price}}</p>
+        <p>Available places: {{lesson.availablePlaces}}</p>
+        <!-- <button v-on:click="addToCart"
+                v-show='canAddToCart'>
+                </button> -->
+        <button v-on:click="addToCart" v-if="canAddToCart">
+          Add to Cart
+        </button>
+        <button disabled='disabled' v-else>
+          Add to Cart
+        </button>
+      </div>
+      <div v-else>
+        <h2>Checkout</h2>
+      </div>
+    </main>
+  </div>
+
+  <script type="text/javascript">
+    var webstore = new Vue({
+      el: '#app',
+      data: {
+        sitename: 'After School Club',
+        lesson: {
+          id: 1001,
+          subject: "Math",
+          location: "London",
+          price: 200,
+          image: "math.ico",
+          availablePlaces: 5
+        },
+        cart: [],
+        showLesson: true,
+      },
+      methods: {
+        addToCart() {
+          this.cart.push(this.lesson.id);
+        },
+        showCheckout() {
+          this.showLesson = this.showLesson ? false : true;
+        },
+      },
+      computed: {
+        cartItemCount() {
+          return this.cart.length;
+        },
+        canAddToCart() {
+          return this.lesson.availablePlaces > this.cart.length;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
