@@ -61,6 +61,7 @@
       methods: {
         addToCart() {
           this.cart.push(this.lesson.id);
+          this.lesson.availablePlaces--;
         },
         showCheckout() {
           this.showLesson = this.showLesson ? false : true;
@@ -71,7 +72,7 @@
           return this.cart.length;
         },
         canAddToCart() {
-          return this.lesson.availablePlaces > this.cart.length;
+          return this.lesson.availablePlaces > 0;
         }
       }
     });
